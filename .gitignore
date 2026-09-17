@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/.cache/hanoi-tests/
 
 # next.js
 /.next/

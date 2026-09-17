@@ -1,23 +1,10 @@
+import { deepStrictEqual } from "node:assert";
+import { describe, it } from "node:test";
 import {
   discLocationsToTowerState,
   locationsAtStep,
   type TowerState,
 } from "./tower-of-hanoi";
-
-export type TestResult = {
-  name: string;
-  passed: boolean;
-  expected: TowerState;
-  actual: TowerState | undefined;
-  error?: string;
-};
-
-export type TestSuite =
-  | "one-disc"
-  | "two-discs"
-  | "three-discs"
-  | "four-discs"
-  | "original";
 
 // Solve from A to C using B as the spare peg. Each character identifies the
 // peg holding a disc, ordered from smallest to largest (array index 0 upward).
@@ -61,69 +48,32 @@ const solutions = [
   ...fourDiscSolutions,
 ];
 
-const testSuites = {
-  "one-disc": oneDiscSolutions,
-  "two-discs": twoDiscSolutions,
-  "three-discs": threeDiscSolutions,
-  "four-discs": fourDiscSolutions,
-  original: solutions,
-};
+describe("locationsAtStep", () => {
+  for (const { discs, states } of solutions) {
+    describe(`${discs} discs (${discs % 2 === 0 ? "even" : "odd"})`, () => {
+      for (const [step, positions] of states.entries()) {
+        it(`step ${step}: ${positions}`, () => {
+          const expected: TowerState = {
+            numberOfDiscs: discs,
+            pegs: [
+              [...positions].flatMap((peg, disc) =>
+                peg === "A" ? [disc] : [],
+              ),
+              [...positions].flatMap((peg, disc) =>
+                peg === "B" ? [disc] : [],
+              ),
+              [...positions].flatMap((peg, disc) =>
+                peg === "C" ? [disc] : [],
+              ),
+            ],
+          };
+          const actual = discLocationsToTowerState(
+            locationsAtStep(discs, step),
+          );
 
-// Call explicitly from application code or a script; importing runs no tests.
-export function runStateAtStepTests(suite: TestSuite = "original"): TestResult[] {
-  const results: TestResult[] = [];
-
-  for (const { discs, states } of testSuites[suite]) {
-    for (const [step, positions] of states.entries()) {
-      const name = `${discs} discs (${discs % 2 === 0 ? "even" : "odd"}), step ${step}: ${positions}`;
-      const expected: TowerState = {
-        numberOfDiscs: discs,
-        pegs: [
-          [...positions].flatMap((peg, disc) => peg === "A" ? [disc] : []),
-          [...positions].flatMap((peg, disc) => peg === "B" ? [disc] : []),
-          [...positions].flatMap((peg, disc) => peg === "C" ? [disc] : []),
-        ],
-      };
-      let actual: TowerState | undefined;
-
-      try {
-        actual = discLocationsToTowerState(locationsAtStep(discs, step));
-        assertTowerState(actual, expected);
-        results.push({ name, passed: true, expected, actual });
-      } catch (error) {
-        results.push({
-          name,
-          passed: false,
-          expected,
-          actual,
-          error: error instanceof Error ? error.message : String(error),
+          deepStrictEqual(actual, expected);
         });
       }
-    }
+    });
   }
-
-  return results;
-}
-
-function assertTowerState(
-  actual: TowerState,
-  expected: TowerState,
-): void {
-  const discs = expected.numberOfDiscs;
-  if (actual.numberOfDiscs !== discs) {
-    throw new Error(`Expected ${discs} discs, got ${actual.numberOfDiscs}`);
-  }
-
-  if (
-    actual.pegs.length !== 3 ||
-    expected.pegs.some(
-      (expectedPeg, peg) =>
-        actual.pegs[peg].length !== expectedPeg.length ||
-        expectedPeg.some((disc, index) => actual.pegs[peg][index] !== disc),
-    )
-  ) {
-    throw new Error(
-      "Disc positions do not match the expected state.",
-    );
-  }
-}
+});

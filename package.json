@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "test": "tsc src/lib/tower-of-hanoi.test.ts --outDir .cache/hanoi-tests --module commonjs --target es2019 --strict --skipLibCheck && node --test .cache/hanoi-tests/tower-of-hanoi.test.js",
     "solve": "tsc scripts/solve.ts --outDir .cache/hanoi-playback --module commonjs --target es2019 --strict --skipLibCheck --sourceMap --inlineSources && node --enable-source-maps .cache/hanoi-playback/scripts/solve.js",
     "dev": "next dev",
     "build": "next build",
