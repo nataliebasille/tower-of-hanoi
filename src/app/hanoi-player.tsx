@@ -13,6 +13,7 @@ const colors = [
   "#b2ad72",
   "#c99370",
 ];
+
 export default function HanoiPlayer() {
   const [discs, setDiscs] = useState(5);
   const [speed, setSpeed] = useState(1);
@@ -45,7 +46,6 @@ export default function HanoiPlayer() {
   return (
     <main className="hanoi">
       <section className="intro">
-        <span className="eyebrow">THREE PEGS. ONE BEAUTIFUL PROBLEM.</span>
         <h1>
           Tower of Hanoi<span>.</span>
         </h1>
@@ -55,12 +55,16 @@ export default function HanoiPlayer() {
         </p>
       </section>
       <div className="layout">
-        <aside className="player-controls" aria-label="Puzzle controls">
+        <aside
+          className="player-controls card-soft/surface"
+          aria-label="Puzzle controls"
+        >
           <div className="player-settings">
             <div className="disc-setting">
               <label htmlFor="disc-count">Discs</label>
               <div className="disc-stepper">
                 <button
+                  className="btn-icon btn-ghost/surface btn-size-sm"
                   aria-label="Fewer discs"
                   disabled={discs === 1}
                   onClick={() => {
@@ -74,6 +78,7 @@ export default function HanoiPlayer() {
                   {discs}
                 </output>
                 <button
+                  className="btn-icon btn-ghost/surface btn-size-sm"
                   aria-label="More discs"
                   disabled={discs === 8}
                   onClick={() => {
@@ -91,6 +96,11 @@ export default function HanoiPlayer() {
                 {[0.5, 1, 2, 4].map((value) => (
                   <button
                     key={value}
+                    className={
+                      speed === value ?
+                        "btn-soft/primary btn-size-sm"
+                      : "btn-ghost/surface btn-size-sm"
+                    }
                     aria-pressed={speed === value}
                     onClick={() => setSpeed(value)}
                   >
@@ -102,7 +112,7 @@ export default function HanoiPlayer() {
           </div>
           <div className="player-actions">
             <button
-              className="player-play"
+              className="player-play btn-solid/primary btn-size-md"
               onClick={() => {
                 if (complete) setStep(0);
                 setPlaying(!playing);
@@ -116,10 +126,15 @@ export default function HanoiPlayer() {
                 "▶ Resume"
               : "▶ Play"}
             </button>
-            <button disabled={!step && !playing} onClick={reset}>
+            <button
+              className="btn-outline/surface btn-size-md"
+              disabled={!step && !playing}
+              onClick={reset}
+            >
               ↺ Reset
             </button>
             <button
+              className="btn-outline/secondary btn-size-md"
               disabled={playing || complete}
               onClick={() => setStep(step + 1)}
             >
@@ -127,7 +142,7 @@ export default function HanoiPlayer() {
             </button>
           </div>
         </aside>
-        <section className="visual-panel">
+        <section className="visual-panel card-outline/surface">
           <div className="visual-heading">
             <span className="status">
               ● &nbsp;

@@ -1,7 +1,20 @@
 @import "tailwindcss";
+@import "@nataliebasille/natcore-design-system";
+
+:root[data-theme="fern-kiln"] {
+  --theme-primary: #496b42;
+  --theme-secondary: #3f6f7d;
+  --theme-accent: #b8793e;
+  --theme-surface-50: #f5f5ef;
+  --theme-surface-500: #727267;
+  --theme-surface-950: #11130d;
+  --theme-danger: #b94a42;
+  --theme-success: #3f8f57;
+}
+
 :root {
-  --background: #192c26;
-  --foreground: #e9eddd;
+  --background: var(--color-surface-50);
+  --foreground: var(--color-on-surface-50);
 }
 @theme inline {
   --color-background: var(--background);
@@ -16,7 +29,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 button {
   font: inherit;
@@ -24,10 +37,6 @@ button {
 }
 button:disabled {
   cursor: default;
-}
-button:focus-visible {
-  outline: 3px solid #cf985e;
-  outline-offset: 4px;
 }
 .hanoi {
   width: 100%;
@@ -58,10 +67,11 @@ h1 {
   margin: 5px 0;
 }
 h1 span {
-  color: #d08b55;
+  color: var(--color-accent-500);
 }
 .intro p {
-  color: #7b8277;
+  color: var(--color-on-surface-50);
+  opacity: 0.62;
   font-size: 12px;
   line-height: 1.4;
   margin: 0;
@@ -82,9 +92,6 @@ h1 span {
   min-width: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
-  border-radius: 14px;
-  border: 1px solid #405543;
-  background: #253b30;
   overflow: hidden;
 }
 .visual-heading {
@@ -95,7 +102,8 @@ h1 span {
 }
 .status {
   font-size: 10px;
-  color: #75816b;
+  color: var(--color-on-surface-50);
+  opacity: 0.62;
 }
 .tower {
   width: 100%;
@@ -105,12 +113,13 @@ h1 span {
   overflow: visible;
 }
 .peg-label {
-  fill: #5a6c54;
+  fill: var(--color-primary-400);
   font-size: 14px;
   font-weight: bold;
 }
 .peg-caption {
-  fill: #7d876e;
+  fill: var(--color-on-surface-50);
+  opacity: 0.58;
   font-size: 8px;
   letter-spacing: 2px;
 }
@@ -145,7 +154,8 @@ h1 span {
   gap: 12px;
 }
 .muted {
-  color: #7c8375;
+  color: var(--color-on-surface-50);
+  opacity: 0.62;
   font-size: 12px;
   line-height: 1.8;
 }
@@ -156,7 +166,8 @@ h1 span {
 .playback-info strong span {
   font-weight: 400;
   font-size: 11px;
-  color: #7b886c;
+  color: var(--color-on-surface-50);
+  opacity: 0.62;
 }
 progress {
   display: block;
@@ -169,13 +180,13 @@ progress {
   overflow: hidden;
 }
 progress::-webkit-progress-bar {
-  background: #dce2d1;
+  background: var(--color-surface-700);
 }
 progress::-webkit-progress-value {
-  background: #78936d;
+  background: var(--color-primary-500);
 }
 progress::-moz-progress-bar {
-  background: #78936d;
+  background: var(--color-primary-500);
 }
 @media (max-width: 520px) {
   .eyebrow {
@@ -231,9 +242,6 @@ progress::-moz-progress-bar {
   justify-content: space-between;
   gap: 20px;
   padding: 14px 18px;
-  border: 1px solid #43574b;
-  border-radius: 12px;
-  background: #21372e;
 }
 .player-settings {
   display: flex;
@@ -251,7 +259,7 @@ progress::-moz-progress-bar {
   margin: 0;
   width: auto;
   font-size: 12px;
-  color: #c4d1bf;
+  color: var(--color-on-surface-50);
   font-weight: 500;
 }
 .speed-setting {
@@ -269,40 +277,21 @@ progress::-moz-progress-bar {
 .speed-options {
   display: flex;
   align-items: center;
-  border-radius: 8px;
   padding: 3px;
-  background: #172a22;
-  border: 1px solid #405447;
-}
-.player-controls button {
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #d0dbca;
-  height: 34px;
-  padding: 0 12px;
-  font-size: 12px;
-  font-weight: 500;
-}
-.player-controls button:enabled:hover {
-  background: #3b5544;
+  background: var(--color-surface-50);
+  border: 1px solid
+    color-mix(in srgb, var(--color-surface-500) 45%, transparent);
+  border-radius: var(--radius-lg);
 }
 .disc-stepper button {
-  font-size: 20px;
-  width: 32px;
-  padding: 0;
+  font-size: 18px;
 }
 .disc-stepper output {
   text-align: center;
   min-width: 28px;
   font-size: 14px;
   font-variant-numeric: tabular-nums;
-  color: #f1f3e9;
-}
-.speed-options button[aria-pressed="true"] {
-  background: #425e49;
-  color: #fff;
-  box-shadow: 0 1px 3px #0003;
+  color: var(--color-on-surface-50);
 }
 .player-actions {
   display: flex;
@@ -310,18 +299,10 @@ progress::-moz-progress-bar {
   gap: 8px;
 }
 .player-actions > button {
-  height: 40px;
-  border: 1px solid #526450;
   white-space: nowrap;
 }
 .player-actions .player-play {
   min-width: 100px;
-  background: #bfd2aa;
-  color: #1d3526;
-  border-color: #bfd2aa;
-}
-.player-actions .player-play:enabled:hover {
-  background: #d0e0bf;
 }
 .player-controls button:disabled {
   opacity: 0.45;

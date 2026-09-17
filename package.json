@@ -13,6 +13,7 @@
     "check": "pnpm lint && pnpm format:check"
   },
   "dependencies": {
+    "@nataliebasille/natcore-design-system": "^2.0.3",
     "next": "16.3.5",
     "react": "19.2.8",
     "react-dom": "19.2.8"

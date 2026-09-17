@@ -9,8 +9,6 @@ type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
 };
 
-type MutableTowerState = Mutable<TowerState>;
-
 export function createInitialDiscLocations(discs: number): DiscLocations {
   return locationsAtStep(discs, 0);
 }
