@@ -1,0 +1,45 @@
+ WARN  Issue while reading "C:\Users\natal\Desktop\projects\tower of hanoi\.npmrc". Failed to replace env in config: ${GITHUB_PACKAGES_TOKEN}
+scripts/solve.ts(30,47): error TS2339: Property 'join' does not exist on type 'SolutionStep'.
+  Property 'join' does not exist on type 'InitialStep'.
+scripts/solve.ts(31,65): error TS2345: Argument of type 'SolutionStep' is not assignable to parameter of type 'DiscLocations'.
+  Type 'InitialStep' is missing the following properties from type 'readonly PegId[]': length, concat, join, slice, and 26 more.
+src/app/_components/hanoi-tower-renderer.tsx(8,34): error TS2304: Cannot find name 'getMovedDiscIndex'.
+src/app/_components/hanoi-tower-renderer.tsx(9,37): error TS2552: Cannot find name 'getDuration'. Did you mean 'duration'?
+src/app/_components/hanoi-tower-renderer.tsx(10,35): error TS2304: Cannot find name 'getDiscColors'.
+src/app/_components/hanoi-tower-renderer.tsx(61,19): error TS2304: Cannot find name 'position'.
+src/app/_components/hanoi-tower-renderer.tsx(62,21): error TS2304: Cannot find name 'position'.
+src/app/_components/hanoi-tower-renderer.tsx(75,39): error TS18046: 'duration' is of type 'unknown'.
+src/app/_components/hanoi-tower-renderer.tsx(76,20): error TS2304: Cannot find name 'CSSProperties'.
+src/app/_components/hanoi-tower-renderer.tsx(84,21): error TS18046: 'colors' is of type 'unknown'.
+src/app/hanoi-player.tsx(27,27): error TS2339: Property 'findIndex' does not exist on type 'SolutionStep'.
+  Property 'findIndex' does not exist on type 'InitialStep'.
+src/app/hanoi-player.tsx(27,38): error TS7006: Parameter 'peg' implicitly has an 'any' type.
+src/app/hanoi-player.tsx(27,43): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/app/hanoi-player.tsx(27,57): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'SolutionStep'.
+src/app/hanoi-player.tsx(162,96): error TS2339: Property 'map' does not exist on type 'SolutionStep'.
+  Property 'map' does not exist on type 'InitialStep'.
+src/app/hanoi-player.tsx(162,101): error TS7006: Parameter 'p' implicitly has an 'any' type.
+src/app/hanoi-player.tsx(217,24): error TS2339: Property 'map' does not exist on type 'SolutionStep'.
+  Property 'map' does not exist on type 'InitialStep'.
+src/app/hanoi-player.tsx(217,29): error TS7006: Parameter '_' implicitly has an 'any' type.
+src/app/hanoi-player.tsx(217,32): error TS7006: Parameter 'i' implicitly has an 'any' type.
+src/app/hanoi-player.tsx(218,37): error TS2345: Argument of type 'SolutionStep' is not assignable to parameter of type 'readonly number[]'.
+  Type 'InitialStep' is missing the following properties from type 'readonly number[]': length, concat, join, slice, and 26 more.
+src/app/hanoi-player.tsx(219,39): error TS2345: Argument of type 'SolutionStep' is not assignable to parameter of type 'readonly number[]'.
+  Type 'InitialStep' is missing the following properties from type 'readonly number[]': length, concat, join, slice, and 26 more.
+src/app/hanoi-player.tsx(266,51): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'SolutionStep'.
+src/app/hanoi-player.tsx(266,83): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type 'SolutionStep'.
+src/app/page.tsx(41,18): error TS2304: Cannot find name 'complete'.
+src/app/page.tsx(43,19): error TS2552: Cannot find name 'playing'. Did you mean 'onplaying'?
+src/app/page.tsx(45,19): error TS2304: Cannot find name 'step'.
+src/app/page.tsx(54,20): error TS2304: Cannot find name 'complete'.
+src/app/page.tsx(56,21): error TS2304: Cannot find name 'moved'.
+src/app/page.tsx(58,29): error TS2304: Cannot find name 'moved'.
+src/app/page.tsx(58,53): error TS2304: Cannot find name 'previous'.
+src/app/page.tsx(58,62): error TS2304: Cannot find name 'moved'.
+src/app/page.tsx(58,85): error TS2304: Cannot find name 'locations'.
+src/app/page.tsx(58,95): error TS2304: Cannot find name 'moved'.
+src/app/page.tsx(62,20): error TS2304: Cannot find name 'step'.
+src/app/page.tsx(62,35): error TS2304: Cannot find name 'total'.
+src/app/page.tsx(66,24): error TS2304: Cannot find name 'step'.
+src/app/page.tsx(67,22): error TS2304: Cannot find name 'total'.

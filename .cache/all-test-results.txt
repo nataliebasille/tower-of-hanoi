@@ -1,0 +1,770 @@
+ WARN  Issue while reading "C:\Users\natal\Desktop\projects\tower of hanoi\.npmrc". Failed to replace env in config: ${GITHUB_PACKAGES_TOKEN}
+
+> tower-of-hanoi@0.1.0 test C:\Users\natal\Desktop\projects\tower of hanoi
+> node scripts/test.cjs
+
+TAP version 13
+# Subtest: bidirectional
+    # Subtest: yields source values in order and reports completion
+    ok 1 - yields source values in order and reports completion
+      ---
+      duration_ms: 3.923
+      ...
+    # Subtest: handles an empty source in both directions
+    ok 2 - handles an empty source in both directions
+      ---
+      duration_ms: 1.1743
+      ...
+    # Subtest: does not move before the first value when previous is unavailable
+    ok 3 - does not move before the first value when previous is unavailable
+      ---
+      duration_ms: 0.6151
+      ...
+    # Subtest: walks backward through history and resumes forward through new values
+    ok 4 - walks backward through history and resumes forward through new values
+      ---
+      duration_ms: 0.3212
+      ...
+    # Subtest: evaluates the source lazily and does not repeat side effects during replay
+    ok 5 - evaluates the source lazily and does not repeat side effects during replay
+      ---
+      duration_ms: 0.5481
+      ...
+    # Subtest: preserves object identity when replaying cached values
+    ok 6 - preserves object identity when replaying cached values
+      ---
+      duration_ms: 0.2792
+      ...
+    # Subtest: treats undefined and other falsy values as yielded values
+    ok 7 - treats undefined and other falsy values as yielded values
+      ---
+      duration_ms: 0.4359
+      ...
+    # Subtest: supports iteration over the remaining values after rewinding
+    ok 8 - supports iteration over the remaining values after rewinding
+      ---
+      duration_ms: 0.3533
+      ...
+    # Subtest: can replay forward after rewinding an exhausted source
+    ok 9 - can replay forward after rewinding an exhausted source
+      ---
+      duration_ms: 2.2365
+      ...
+    # Subtest: propagates source errors when advancing to a new value
+    ok 10 - propagates source errors when advancing to a new value
+      ---
+      duration_ms: 1.4111
+      ...
+    1..10
+ok 1 - bidirectional
+  ---
+  duration_ms: 14.2594
+  type: 'suite'
+  ...
+# Subtest: useBidirectional controls
+    # Subtest: preserves callbacks, history, and position across rerenders with the same source
+    ok 1 - preserves callbacks, history, and position across rerenders with the same source
+      ---
+      duration_ms: 28.0622
+      ...
+    # Subtest: starts fresh history when the source changes
+    ok 2 - starts fresh history when the source changes
+      ---
+      duration_ms: 6.1962
+      ...
+    # Subtest: cleans up the old source when the source changes
+    ok 3 - cleans up the old source when the source changes
+      ---
+      duration_ms: 4.2269
+      ...
+    # Subtest: runs source cleanup on unmount
+    ok 4 - runs source cleanup on unmount
+      ---
+      duration_ms: 2.7876
+      ...
+    # Subtest: does not consume the source during render or before the first next
+    ok 5 - does not consume the source during render or before the first next
+      ---
+      duration_ms: 2.6972
+      ...
+    # Subtest: navigates history before continuing to new source values
+    ok 6 - navigates history before continuing to new source values
+      ---
+      duration_ms: 3.1881
+      ...
+    # Subtest: handles an empty source in both directions
+    ok 7 - handles an empty source in both directions
+      ---
+      duration_ms: 3.2386
+      ...
+    # Subtest: return stops forward iteration
+    ok 8 - return stops forward iteration
+      ---
+      duration_ms: 1.7798
+      ...
+    # Subtest: return runs the underlying source cleanup
+    ok 9 - return runs the underlying source cleanup
+      ---
+      duration_ms: 2.9883
+      ...
+    # Subtest: propagates an unhandled thrown error and stops forward iteration
+    ok 10 - propagates an unhandled thrown error and stops forward iteration
+      ---
+      duration_ms: 3.412
+      ...
+    1..10
+ok 2 - useBidirectional controls
+  ---
+  duration_ms: 62.0708
+  type: 'suite'
+  ...
+# Subtest: useGenerator controls
+    # Subtest: keeps callbacks and source position across rerenders with the same source
+    ok 1 - keeps callbacks and source position across rerenders with the same source
+      ---
+      duration_ms: 23.9121
+      ...
+    # Subtest: closes the old source on replacement and directs controls to the new source
+    ok 2 - closes the old source on replacement and directs controls to the new source
+      ---
+      duration_ms: 4.5275
+      ...
+    # Subtest: runs source cleanup on unmount
+    ok 3 - runs source cleanup on unmount
+      ---
+      duration_ms: 2.6763
+      ...
+    # Subtest: does not advance the source during render
+    ok 4 - does not advance the source during render
+      ---
+      duration_ms: 3.8145
+      ...
+    # Subtest: advances through the source and reports completion
+    ok 5 - advances through the source and reports completion
+      ---
+      duration_ms: 2.7221
+      ...
+    # Subtest: reports completion for an empty source
+    ok 6 - reports completion for an empty source
+      ---
+      duration_ms: 2.2536
+      ...
+    # Subtest: return closes the source and runs its cleanup
+    ok 7 - return closes the source and runs its cleanup
+      ---
+      duration_ms: 2.8616
+      ...
+    # Subtest: passes thrown errors to the source and returns its recovery value
+    ok 8 - passes thrown errors to the source and returns its recovery value
+      ---
+      duration_ms: 2.42
+      ...
+    # Subtest: propagates errors that the source does not handle
+    ok 9 - propagates errors that the source does not handle
+      ---
+      duration_ms: 2.9845
+      ...
+    1..9
+ok 3 - useGenerator controls
+  ---
+  duration_ms: 51.02
+  type: 'suite'
+  ...
+# (node:54860) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: useHanoiPlayback
+    # Subtest: does not advance while paused
+    ok 1 - does not advance while paused
+      ---
+      duration_ms: 29.0334
+      ...
+    # Subtest: waits a full interval and advances once per interval
+    ok 2 - waits a full interval and advances once per interval
+      ---
+      duration_ms: 9.0052
+      ...
+    # Subtest: cancels the pending tick on pause and resumes from the current step
+    ok 3 - cancels the pending tick on pause and resumes from the current step
+      ---
+      duration_ms: 9.551
+      ...
+    # Subtest: replaces the old interval when speed changes
+    ok 4 - replaces the old interval when speed changes
+      ---
+      duration_ms: 5.1654
+      ...
+    # Subtest: does not restart the interval on an unrelated rerender
+    ok 5 - does not restart the interval on an unrelated rerender
+      ---
+      duration_ms: 5.5904
+      ...
+    # Subtest: clears the playback interval on unmount
+    ok 6 - clears the playback interval on unmount
+      ---
+      duration_ms: 4.0667
+      ...
+    # Subtest: pauses automatically when the final move completes
+    not ok 7 - pauses automatically when the final move completes
+      ---
+      duration_ms: 6.3805
+      location: 'C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiPlayback.test.ts:112:5'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly deep-equal:
+        + actual - expected
+        
+          {
+            discs: 3,
+        +   playing: true,
+        -   playing: false,
+            speed: 1000,
+            step: {
+              complete: true,
+              locations: [
+                2,
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected:
+        discs: 3
+        speed: 1000
+        playing: false
+        step:
+          step: 7
+          movedDisc: 0
+          locations:
+            0: 2
+            1: 2
+            2: 2
+          complete: true
+      actual:
+        discs: 3
+        speed: 1000
+        playing: true
+        step:
+          step: 7
+          movedDisc: 0
+          locations:
+            0: 2
+            1: 2
+            2: 2
+          complete: true
+      operator: 'deepStrictEqual'
+      stack: |-
+        TestContext.<anonymous> (C:\Users\natal\Desktop\projects\tower of hanoi\src\lib\hooks\useHanoiPlayback.test.ts:120:20)
+        Test.runInAsyncScope (node:async_hooks:211:14)
+        Test.run (node:internal/test_runner/test:979:25)
+        Suite.processPendingSubtests (node:internal/test_runner/test:677:18)
+        Test.postRun (node:internal/test_runner/test:1090:19)
+        Test.run (node:internal/test_runner/test:1018:12)
+        process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:677:7)
+      ...
+    1..7
+not ok 4 - useHanoiPlayback
+  ---
+  duration_ms: 71.5046
+  type: 'suite'
+  location: 'C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiPlayback.test.ts:14:9'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: useHanoiStepController
+    # Subtest: does not advance during mounting or rerendering
+    ok 1 - does not advance during mounting or rerendering
+      ---
+      duration_ms: 30.3485
+      ...
+    # Subtest: advances one move and returns the updated player state
+    ok 2 - advances one move and returns the updated player state
+      ---
+      duration_ms: 7.3788
+      ...
+    # Subtest: uses the latest state for multiple moves in one render batch
+    ok 3 - uses the latest state for multiple moves in one render batch
+      ---
+      duration_ms: 4.6122
+      ...
+    # Subtest: rewinds one move while preserving speed and playback state
+    ok 4 - rewinds one move while preserving speed and playback state
+      ---
+      duration_ms: 4.1984
+      ...
+    # Subtest: stays at the initial state when rewound repeatedly
+    ok 5 - stays at the initial state when rewound repeatedly
+      ---
+      duration_ms: 3.7126
+      ...
+    # Subtest: marks the final move complete and does not advance beyond it
+    ok 6 - marks the final move complete and does not advance beyond it
+      ---
+      duration_ms: 4.6035
+      ...
+    # Subtest: clears completion when rewinding from the final state
+    ok 7 - clears completion when rewinding from the final state
+      ---
+      duration_ms: 2.2922
+      ...
+    # Subtest: saved controls operate on a replacement puzzle state
+    ok 8 - saved controls operate on a replacement puzzle state
+      ---
+      duration_ms: 2.9123
+      ...
+    1..8
+ok 5 - useHanoiStepController
+  ---
+  duration_ms: 62.5682
+  type: 'suite'
+  ...
+# Subtest: solve
+    # Subtest: starts at step zero with no moved disc and is incomplete
+    ok 1 - starts at step zero with no moved disc and is incomplete
+      ---
+      duration_ms: 3.0166
+      ...
+    # Subtest: yields the optimal 1-disc solution with only the final step complete
+    ok 2 - yields the optimal 1-disc solution with only the final step complete
+      ---
+      duration_ms: 1.3386
+      ...
+    # Subtest: preserves earlier states after completing the 1-disc solution
+    ok 3 - preserves earlier states after completing the 1-disc solution
+      ---
+      duration_ms: 0.4314
+      ...
+    # Subtest: yields the optimal 2-disc solution with only the final step complete
+    ok 4 - yields the optimal 2-disc solution with only the final step complete
+      ---
+      duration_ms: 0.73
+      ...
+    # Subtest: preserves earlier states after completing the 2-disc solution
+    ok 5 - preserves earlier states after completing the 2-disc solution
+      ---
+      duration_ms: 0.5978
+      ...
+    # Subtest: yields the optimal 3-disc solution with only the final step complete
+    ok 6 - yields the optimal 3-disc solution with only the final step complete
+      ---
+      duration_ms: 0.8776
+      ...
+    # Subtest: preserves earlier states after completing the 3-disc solution
+    ok 7 - preserves earlier states after completing the 3-disc solution
+      ---
+      duration_ms: 0.4291
+      ...
+    # Subtest: yields the optimal 4-disc solution with only the final step complete
+    ok 8 - yields the optimal 4-disc solution with only the final step complete
+      ---
+      duration_ms: 0.9902
+      ...
+    # Subtest: preserves earlier states after completing the 4-disc solution
+    ok 9 - preserves earlier states after completing the 4-disc solution
+      ---
+      duration_ms: 0.5821
+      ...
+    1..9
+ok 6 - solve
+  ---
+  duration_ms: 12.1659
+  type: 'suite'
+  ...
+# Subtest: nextStep
+    # Subtest: advances through the 1-disc solution and completes only on the final move
+    ok 1 - advances through the 1-disc solution and completes only on the final move
+      ---
+      duration_ms: 2.025
+      ...
+    # Subtest: leaves the completed 1-disc solution unchanged on repeated calls
+    ok 2 - leaves the completed 1-disc solution unchanged on repeated calls
+      ---
+      duration_ms: 0.3693
+      ...
+    # Subtest: advances through the 2-disc solution and completes only on the final move
+    ok 3 - advances through the 2-disc solution and completes only on the final move
+      ---
+      duration_ms: 0.1747
+      ...
+    # Subtest: leaves the completed 2-disc solution unchanged on repeated calls
+    ok 4 - leaves the completed 2-disc solution unchanged on repeated calls
+      ---
+      duration_ms: 0.0774
+      ...
+    # Subtest: advances through the 3-disc solution and completes only on the final move
+    ok 5 - advances through the 3-disc solution and completes only on the final move
+      ---
+      duration_ms: 0.3645
+      ...
+    # Subtest: leaves the completed 3-disc solution unchanged on repeated calls
+    ok 6 - leaves the completed 3-disc solution unchanged on repeated calls
+      ---
+      duration_ms: 0.0777
+      ...
+    # Subtest: advances through the 4-disc solution and completes only on the final move
+    ok 7 - advances through the 4-disc solution and completes only on the final move
+      ---
+      duration_ms: 0.309
+      ...
+    # Subtest: leaves the completed 4-disc solution unchanged on repeated calls
+    ok 8 - leaves the completed 4-disc solution unchanged on repeated calls
+      ---
+      duration_ms: 0.0706
+      ...
+    1..8
+ok 7 - nextStep
+  ---
+  duration_ms: 4.1991
+  type: 'suite'
+  ...
+# Subtest: previousStep
+    # Subtest: rewinds 1 discs from step 1 to 0 without changing the input
+    ok 1 - rewinds 1 discs from step 1 to 0 without changing the input
+      ---
+      duration_ms: 0.6482
+      ...
+    # Subtest: stays at the initial 1-disc state on repeated calls
+    ok 2 - stays at the initial 1-disc state on repeated calls
+      ---
+      duration_ms: 0.1681
+      ...
+    # Subtest: rewinds 2 discs from step 1 to 0 without changing the input
+    ok 3 - rewinds 2 discs from step 1 to 0 without changing the input
+      ---
+      duration_ms: 0.1231
+      ...
+    # Subtest: rewinds 2 discs from step 2 to 1 without changing the input
+    ok 4 - rewinds 2 discs from step 2 to 1 without changing the input
+      ---
+      duration_ms: 0.1393
+      ...
+    # Subtest: rewinds 2 discs from step 3 to 2 without changing the input
+    ok 5 - rewinds 2 discs from step 3 to 2 without changing the input
+      ---
+      duration_ms: 0.0731
+      ...
+    # Subtest: stays at the initial 2-disc state on repeated calls
+    ok 6 - stays at the initial 2-disc state on repeated calls
+      ---
+      duration_ms: 0.0672
+      ...
+    # Subtest: rewinds 3 discs from step 1 to 0 without changing the input
+    ok 7 - rewinds 3 discs from step 1 to 0 without changing the input
+      ---
+      duration_ms: 0.0731
+      ...
+    # Subtest: rewinds 3 discs from step 2 to 1 without changing the input
+    ok 8 - rewinds 3 discs from step 2 to 1 without changing the input
+      ---
+      duration_ms: 0.0683
+      ...
+    # Subtest: rewinds 3 discs from step 3 to 2 without changing the input
+    ok 9 - rewinds 3 discs from step 3 to 2 without changing the input
+      ---
+      duration_ms: 0.0679
+      ...
+    # Subtest: rewinds 3 discs from step 4 to 3 without changing the input
+    ok 10 - rewinds 3 discs from step 4 to 3 without changing the input
+      ---
+      duration_ms: 0.0723
+      ...
+    # Subtest: rewinds 3 discs from step 5 to 4 without changing the input
+    ok 11 - rewinds 3 discs from step 5 to 4 without changing the input
+      ---
+      duration_ms: 0.0694
+      ...
+    # Subtest: rewinds 3 discs from step 6 to 5 without changing the input
+    ok 12 - rewinds 3 discs from step 6 to 5 without changing the input
+      ---
+      duration_ms: 0.0823
+      ...
+    # Subtest: rewinds 3 discs from step 7 to 6 without changing the input
+    ok 13 - rewinds 3 discs from step 7 to 6 without changing the input
+      ---
+      duration_ms: 0.2379
+      ...
+    # Subtest: stays at the initial 3-disc state on repeated calls
+    ok 14 - stays at the initial 3-disc state on repeated calls
+      ---
+      duration_ms: 0.1171
+      ...
+    # Subtest: rewinds 4 discs from step 1 to 0 without changing the input
+    ok 15 - rewinds 4 discs from step 1 to 0 without changing the input
+      ---
+      duration_ms: 0.0775
+      ...
+    # Subtest: rewinds 4 discs from step 2 to 1 without changing the input
+    ok 16 - rewinds 4 discs from step 2 to 1 without changing the input
+      ---
+      duration_ms: 0.0752
+      ...
+    # Subtest: rewinds 4 discs from step 3 to 2 without changing the input
+    ok 17 - rewinds 4 discs from step 3 to 2 without changing the input
+      ---
+      duration_ms: 0.0676
+      ...
+    # Subtest: rewinds 4 discs from step 4 to 3 without changing the input
+    ok 18 - rewinds 4 discs from step 4 to 3 without changing the input
+      ---
+      duration_ms: 0.0716
+      ...
+    # Subtest: rewinds 4 discs from step 5 to 4 without changing the input
+    ok 19 - rewinds 4 discs from step 5 to 4 without changing the input
+      ---
+      duration_ms: 0.058
+      ...
+    # Subtest: rewinds 4 discs from step 6 to 5 without changing the input
+    ok 20 - rewinds 4 discs from step 6 to 5 without changing the input
+      ---
+      duration_ms: 0.0571
+      ...
+    # Subtest: rewinds 4 discs from step 7 to 6 without changing the input
+    ok 21 - rewinds 4 discs from step 7 to 6 without changing the input
+      ---
+      duration_ms: 0.0637
+      ...
+    # Subtest: rewinds 4 discs from step 8 to 7 without changing the input
+    ok 22 - rewinds 4 discs from step 8 to 7 without changing the input
+      ---
+      duration_ms: 0.0639
+      ...
+    # Subtest: rewinds 4 discs from step 9 to 8 without changing the input
+    ok 23 - rewinds 4 discs from step 9 to 8 without changing the input
+      ---
+      duration_ms: 0.0645
+      ...
+    # Subtest: rewinds 4 discs from step 10 to 9 without changing the input
+    ok 24 - rewinds 4 discs from step 10 to 9 without changing the input
+      ---
+      duration_ms: 0.0683
+      ...
+    # Subtest: rewinds 4 discs from step 11 to 10 without changing the input
+    ok 25 - rewinds 4 discs from step 11 to 10 without changing the input
+      ---
+      duration_ms: 0.0579
+      ...
+    # Subtest: rewinds 4 discs from step 12 to 11 without changing the input
+    ok 26 - rewinds 4 discs from step 12 to 11 without changing the input
+      ---
+      duration_ms: 0.167
+      ...
+    # Subtest: rewinds 4 discs from step 13 to 12 without changing the input
+    ok 27 - rewinds 4 discs from step 13 to 12 without changing the input
+      ---
+      duration_ms: 0.0799
+      ...
+    # Subtest: rewinds 4 discs from step 14 to 13 without changing the input
+    ok 28 - rewinds 4 discs from step 14 to 13 without changing the input
+      ---
+      duration_ms: 0.0723
+      ...
+    # Subtest: rewinds 4 discs from step 15 to 14 without changing the input
+    ok 29 - rewinds 4 discs from step 15 to 14 without changing the input
+      ---
+      duration_ms: 0.0581
+      ...
+    # Subtest: stays at the initial 4-disc state on repeated calls
+    ok 30 - stays at the initial 4-disc state on repeated calls
+      ---
+      duration_ms: 0.0738
+      ...
+    1..30
+ok 8 - previousStep
+  ---
+  duration_ms: 3.8097
+  type: 'suite'
+  ...
+# Subtest: locationsAtStep
+    # Subtest: 1 discs (odd)
+        # Subtest: step 0: A
+        ok 1 - step 0: A
+          ---
+          duration_ms: 0.6596
+          ...
+        # Subtest: step 1: C
+        ok 2 - step 1: C
+          ---
+          duration_ms: 0.1869
+          ...
+        1..2
+    ok 1 - 1 discs (odd)
+      ---
+      duration_ms: 1.0155
+      type: 'suite'
+      ...
+    # Subtest: 2 discs (even)
+        # Subtest: step 0: AA
+        ok 1 - step 0: AA
+          ---
+          duration_ms: 0.2081
+          ...
+        # Subtest: step 1: BA
+        ok 2 - step 1: BA
+          ---
+          duration_ms: 0.1149
+          ...
+        # Subtest: step 2: BC
+        ok 3 - step 2: BC
+          ---
+          duration_ms: 0.1033
+          ...
+        # Subtest: step 3: CC
+        ok 4 - step 3: CC
+          ---
+          duration_ms: 0.1358
+          ...
+        1..4
+    ok 2 - 2 discs (even)
+      ---
+      duration_ms: 0.7788
+      type: 'suite'
+      ...
+    # Subtest: 3 discs (odd)
+        # Subtest: step 0: AAA
+        ok 1 - step 0: AAA
+          ---
+          duration_ms: 0.2614
+          ...
+        # Subtest: step 1: CAA
+        ok 2 - step 1: CAA
+          ---
+          duration_ms: 0.1135
+          ...
+        # Subtest: step 2: CBA
+        ok 3 - step 2: CBA
+          ---
+          duration_ms: 0.2599
+          ...
+        # Subtest: step 3: BBA
+        ok 4 - step 3: BBA
+          ---
+          duration_ms: 0.135
+          ...
+        # Subtest: step 4: BBC
+        ok 5 - step 4: BBC
+          ---
+          duration_ms: 0.1625
+          ...
+        # Subtest: step 5: ABC
+        ok 6 - step 5: ABC
+          ---
+          duration_ms: 0.1087
+          ...
+        # Subtest: step 6: ACC
+        ok 7 - step 6: ACC
+          ---
+          duration_ms: 0.1096
+          ...
+        # Subtest: step 7: CCC
+        ok 8 - step 7: CCC
+          ---
+          duration_ms: 0.1108
+          ...
+        1..8
+    ok 3 - 3 discs (odd)
+      ---
+      duration_ms: 1.6375
+      type: 'suite'
+      ...
+    # Subtest: 4 discs (even)
+        # Subtest: step 0: AAAA
+        ok 1 - step 0: AAAA
+          ---
+          duration_ms: 0.3437
+          ...
+        # Subtest: step 1: BAAA
+        ok 2 - step 1: BAAA
+          ---
+          duration_ms: 0.0769
+          ...
+        # Subtest: step 2: BCAA
+        ok 3 - step 2: BCAA
+          ---
+          duration_ms: 1.2113
+          ...
+        # Subtest: step 3: CCAA
+        ok 4 - step 3: CCAA
+          ---
+          duration_ms: 0.1189
+          ...
+        # Subtest: step 4: CCBA
+        ok 5 - step 4: CCBA
+          ---
+          duration_ms: 0.063
+          ...
+        # Subtest: step 5: ACBA
+        ok 6 - step 5: ACBA
+          ---
+          duration_ms: 0.0572
+          ...
+        # Subtest: step 6: ABBA
+        ok 7 - step 6: ABBA
+          ---
+          duration_ms: 0.0581
+          ...
+        # Subtest: step 7: BBBA
+        ok 8 - step 7: BBBA
+          ---
+          duration_ms: 0.0523
+          ...
+        # Subtest: step 8: BBBC
+        ok 9 - step 8: BBBC
+          ---
+          duration_ms: 0.0508
+          ...
+        # Subtest: step 9: CBBC
+        ok 10 - step 9: CBBC
+          ---
+          duration_ms: 0.0523
+          ...
+        # Subtest: step 10: CABC
+        ok 11 - step 10: CABC
+          ---
+          duration_ms: 0.0545
+          ...
+        # Subtest: step 11: AABC
+        ok 12 - step 11: AABC
+          ---
+          duration_ms: 0.0527
+          ...
+        # Subtest: step 12: AACC
+        ok 13 - step 12: AACC
+          ---
+          duration_ms: 0.0515
+          ...
+        # Subtest: step 13: BACC
+        ok 14 - step 13: BACC
+          ---
+          duration_ms: 0.0503
+          ...
+        # Subtest: step 14: BCCC
+        ok 15 - step 14: BCCC
+          ---
+          duration_ms: 0.1216
+          ...
+        # Subtest: step 15: CCCC
+        ok 16 - step 15: CCCC
+          ---
+          duration_ms: 0.0604
+          ...
+        1..16
+    ok 4 - 4 discs (even)
+      ---
+      duration_ms: 2.867
+      type: 'suite'
+      ...
+    1..4
+ok 9 - locationsAtStep
+  ---
+  duration_ms: 6.6636
+  type: 'suite'
+  ...
+1..9
+# tests 121
+# suites 13
+# pass 120
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3464.9283
+ ELIFECYCLE  Test failed. See above for more details.

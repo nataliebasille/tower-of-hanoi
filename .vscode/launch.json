@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Hanoi tests",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "Compile Hanoi tests for debugging",
+      "program": "${workspaceFolder}/.cache/hanoi-debug/tower-of-hanoi.test.js",
+      "cwd": "${workspaceFolder}",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/.cache/hanoi-debug/**/*.js"],
+      "console": "integratedTerminal",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}

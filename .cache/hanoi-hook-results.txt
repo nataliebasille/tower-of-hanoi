@@ -1,0 +1,163 @@
+ WARN  Issue while reading "C:\Users\natal\Desktop\projects\tower of hanoi\.npmrc". Failed to replace env in config: ${GITHUB_PACKAGES_TOKEN}
+
+> tower-of-hanoi@0.1.0 test C:\Users\natal\Desktop\projects\tower of hanoi
+> node scripts/test.cjs "useHanoiStepController.test.ts" "useHanoiPlayback.test.ts"
+
+TAP version 13
+# (node:24216) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: useHanoiPlayback
+    # Subtest: does not advance while paused
+    ok 1 - does not advance while paused
+      ---
+      duration_ms: 27.3405
+      ...
+    # Subtest: waits a full interval and advances once per interval
+    ok 2 - waits a full interval and advances once per interval
+      ---
+      duration_ms: 9.3991
+      ...
+    # Subtest: cancels the pending tick on pause and resumes from the current step
+    ok 3 - cancels the pending tick on pause and resumes from the current step
+      ---
+      duration_ms: 7.8041
+      ...
+    # Subtest: replaces the old interval when speed changes
+    ok 4 - replaces the old interval when speed changes
+      ---
+      duration_ms: 3.7682
+      ...
+    # Subtest: does not restart the interval on an unrelated rerender
+    ok 5 - does not restart the interval on an unrelated rerender
+      ---
+      duration_ms: 4.7788
+      ...
+    # Subtest: clears the playback interval on unmount
+    ok 6 - clears the playback interval on unmount
+      ---
+      duration_ms: 2.8743
+      ...
+    # Subtest: pauses automatically when the final move completes
+    not ok 7 - pauses automatically when the final move completes
+      ---
+      duration_ms: 5.7311
+      location: 'C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiPlayback.test.ts:112:5'
+      failureType: 'testCodeFailure'
+      error: |-
+        Expected values to be strictly deep-equal:
+        + actual - expected
+        
+          {
+            discs: 3,
+        +   playing: true,
+        -   playing: false,
+            speed: 1000,
+            step: {
+              complete: true,
+              locations: [
+                2,
+        
+      code: 'ERR_ASSERTION'
+      name: 'AssertionError'
+      expected:
+        discs: 3
+        speed: 1000
+        playing: false
+        step:
+          step: 7
+          movedDisc: 0
+          locations:
+            0: 2
+            1: 2
+            2: 2
+          complete: true
+      actual:
+        discs: 3
+        speed: 1000
+        playing: true
+        step:
+          step: 7
+          movedDisc: 0
+          locations:
+            0: 2
+            1: 2
+            2: 2
+          complete: true
+      operator: 'deepStrictEqual'
+      stack: |-
+        TestContext.<anonymous> (C:\Users\natal\Desktop\projects\tower of hanoi\src\lib\hooks\useHanoiPlayback.test.ts:120:20)
+        Test.runInAsyncScope (node:async_hooks:211:14)
+        Test.run (node:internal/test_runner/test:979:25)
+        Suite.processPendingSubtests (node:internal/test_runner/test:677:18)
+        Test.postRun (node:internal/test_runner/test:1090:19)
+        Test.run (node:internal/test_runner/test:1018:12)
+        process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+        async Suite.processPendingSubtests (node:internal/test_runner/test:677:7)
+      ...
+    1..7
+not ok 1 - useHanoiPlayback
+  ---
+  duration_ms: 64.5886
+  type: 'suite'
+  location: 'C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiPlayback.test.ts:14:9'
+  failureType: 'subtestsFailed'
+  error: '1 subtest failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: useHanoiStepController
+    # Subtest: does not advance during mounting or rerendering
+    ok 1 - does not advance during mounting or rerendering
+      ---
+      duration_ms: 30.3002
+      ...
+    # Subtest: advances one move and returns the updated player state
+    ok 2 - advances one move and returns the updated player state
+      ---
+      duration_ms: 5.7816
+      ...
+    # Subtest: uses the latest state for multiple moves in one render batch
+    ok 3 - uses the latest state for multiple moves in one render batch
+      ---
+      duration_ms: 4.9749
+      ...
+    # Subtest: rewinds one move while preserving speed and playback state
+    ok 4 - rewinds one move while preserving speed and playback state
+      ---
+      duration_ms: 3.5742
+      ...
+    # Subtest: stays at the initial state when rewound repeatedly
+    ok 5 - stays at the initial state when rewound repeatedly
+      ---
+      duration_ms: 3.2618
+      ...
+    # Subtest: marks the final move complete and does not advance beyond it
+    ok 6 - marks the final move complete and does not advance beyond it
+      ---
+      duration_ms: 3.2591
+      ...
+    # Subtest: clears completion when rewinding from the final state
+    ok 7 - clears completion when rewinding from the final state
+      ---
+      duration_ms: 2.4508
+      ...
+    # Subtest: saved controls operate on a replacement puzzle state
+    ok 8 - saved controls operate on a replacement puzzle state
+      ---
+      duration_ms: 2.4082
+      ...
+    1..8
+ok 2 - useHanoiStepController
+  ---
+  duration_ms: 58.0914
+  type: 'suite'
+  ...
+1..2
+# tests 15
+# suites 2
+# pass 14
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3602.0261
+ ELIFECYCLE  Test failed. See above for more details.

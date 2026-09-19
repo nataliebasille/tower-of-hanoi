@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "rootDir": "../src",
+    "outDir": "./hanoi-tests",
+    "module": "commonjs",
+    "target": "es2019",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "noEmitOnError": true,
+    "baseUrl": "..",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    }
+  },
+  "files": [
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\tower-of-hanoi.test.ts",
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\bi-directional-generator.test.ts",
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useGenerator.test.ts",
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useBidirectional.test.ts",
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiStepController.test.ts",
+    "C:\\Users\\natal\\Desktop\\projects\\tower of hanoi\\src\\lib\\hooks\\useHanoiPlayback.test.ts"
+  ]
+}

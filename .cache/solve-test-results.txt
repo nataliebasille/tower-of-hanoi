@@ -1,0 +1,252 @@
+ WARN  Issue while reading "C:\Users\natal\Desktop\projects\tower of hanoi\.npmrc". Failed to replace env in config: ${GITHUB_PACKAGES_TOKEN}
+
+> tower-of-hanoi@0.1.0 test C:\Users\natal\Desktop\projects\tower of hanoi
+> node scripts/test.cjs "tower-of-hanoi.test.ts"
+
+TAP version 13
+# Subtest: solve
+    # Subtest: starts at step zero with no moved disc and is incomplete
+    ok 1 - starts at step zero with no moved disc and is incomplete
+      ---
+      duration_ms: 2.8908
+      ...
+    # Subtest: yields the optimal 1-disc solution with only the final step complete
+    ok 2 - yields the optimal 1-disc solution with only the final step complete
+      ---
+      duration_ms: 0.9631
+      ...
+    # Subtest: preserves earlier states after completing the 1-disc solution
+    ok 3 - preserves earlier states after completing the 1-disc solution
+      ---
+      duration_ms: 0.2949
+      ...
+    # Subtest: yields the optimal 2-disc solution with only the final step complete
+    ok 4 - yields the optimal 2-disc solution with only the final step complete
+      ---
+      duration_ms: 1.7315
+      ...
+    # Subtest: preserves earlier states after completing the 2-disc solution
+    ok 5 - preserves earlier states after completing the 2-disc solution
+      ---
+      duration_ms: 0.3059
+      ...
+    # Subtest: yields the optimal 3-disc solution with only the final step complete
+    ok 6 - yields the optimal 3-disc solution with only the final step complete
+      ---
+      duration_ms: 0.3618
+      ...
+    # Subtest: preserves earlier states after completing the 3-disc solution
+    ok 7 - preserves earlier states after completing the 3-disc solution
+      ---
+      duration_ms: 0.1863
+      ...
+    # Subtest: yields the optimal 4-disc solution with only the final step complete
+    ok 8 - yields the optimal 4-disc solution with only the final step complete
+      ---
+      duration_ms: 0.5255
+      ...
+    # Subtest: preserves earlier states after completing the 4-disc solution
+    ok 9 - preserves earlier states after completing the 4-disc solution
+      ---
+      duration_ms: 0.4359
+      ...
+    1..9
+ok 1 - solve
+  ---
+  duration_ms: 9.8426
+  type: 'suite'
+  ...
+# Subtest: locationsAtStep
+    # Subtest: 1 discs (odd)
+        # Subtest: step 0: A
+        ok 1 - step 0: A
+          ---
+          duration_ms: 1.267
+          ...
+        # Subtest: step 1: C
+        ok 2 - step 1: C
+          ---
+          duration_ms: 0.3504
+          ...
+        1..2
+    ok 1 - 1 discs (odd)
+      ---
+      duration_ms: 2.1887
+      type: 'suite'
+      ...
+    # Subtest: 2 discs (even)
+        # Subtest: step 0: AA
+        ok 1 - step 0: AA
+          ---
+          duration_ms: 0.5312
+          ...
+        # Subtest: step 1: BA
+        ok 2 - step 1: BA
+          ---
+          duration_ms: 0.331
+          ...
+        # Subtest: step 2: BC
+        ok 3 - step 2: BC
+          ---
+          duration_ms: 0.3429
+          ...
+        # Subtest: step 3: CC
+        ok 4 - step 3: CC
+          ---
+          duration_ms: 0.2246
+          ...
+        1..4
+    ok 2 - 2 discs (even)
+      ---
+      duration_ms: 1.9312
+      type: 'suite'
+      ...
+    # Subtest: 3 discs (odd)
+        # Subtest: step 0: AAA
+        ok 1 - step 0: AAA
+          ---
+          duration_ms: 0.3632
+          ...
+        # Subtest: step 1: CAA
+        ok 2 - step 1: CAA
+          ---
+          duration_ms: 0.1704
+          ...
+        # Subtest: step 2: CBA
+        ok 3 - step 2: CBA
+          ---
+          duration_ms: 0.1445
+          ...
+        # Subtest: step 3: BBA
+        ok 4 - step 3: BBA
+          ---
+          duration_ms: 0.1412
+          ...
+        # Subtest: step 4: BBC
+        ok 5 - step 4: BBC
+          ---
+          duration_ms: 0.1088
+          ...
+        # Subtest: step 5: ABC
+        ok 6 - step 5: ABC
+          ---
+          duration_ms: 0.1039
+          ...
+        # Subtest: step 6: ACC
+        ok 7 - step 6: ACC
+          ---
+          duration_ms: 0.1024
+          ...
+        # Subtest: step 7: CCC
+        ok 8 - step 7: CCC
+          ---
+          duration_ms: 0.1181
+          ...
+        1..8
+    ok 3 - 3 discs (odd)
+      ---
+      duration_ms: 1.9265
+      type: 'suite'
+      ...
+    # Subtest: 4 discs (even)
+        # Subtest: step 0: AAAA
+        ok 1 - step 0: AAAA
+          ---
+          duration_ms: 1.52
+          ...
+        # Subtest: step 1: BAAA
+        ok 2 - step 1: BAAA
+          ---
+          duration_ms: 0.4089
+          ...
+        # Subtest: step 2: BCAA
+        ok 3 - step 2: BCAA
+          ---
+          duration_ms: 0.1308
+          ...
+        # Subtest: step 3: CCAA
+        ok 4 - step 3: CCAA
+          ---
+          duration_ms: 0.092
+          ...
+        # Subtest: step 4: CCBA
+        ok 5 - step 4: CCBA
+          ---
+          duration_ms: 0.0902
+          ...
+        # Subtest: step 5: ACBA
+        ok 6 - step 5: ACBA
+          ---
+          duration_ms: 0.0822
+          ...
+        # Subtest: step 6: ABBA
+        ok 7 - step 6: ABBA
+          ---
+          duration_ms: 0.2483
+          ...
+        # Subtest: step 7: BBBA
+        ok 8 - step 7: BBBA
+          ---
+          duration_ms: 0.0997
+          ...
+        # Subtest: step 8: BBBC
+        ok 9 - step 8: BBBC
+          ---
+          duration_ms: 0.0566
+          ...
+        # Subtest: step 9: CBBC
+        ok 10 - step 9: CBBC
+          ---
+          duration_ms: 0.0559
+          ...
+        # Subtest: step 10: CABC
+        ok 11 - step 10: CABC
+          ---
+          duration_ms: 0.0519
+          ...
+        # Subtest: step 11: AABC
+        ok 12 - step 11: AABC
+          ---
+          duration_ms: 0.0646
+          ...
+        # Subtest: step 12: AACC
+        ok 13 - step 12: AACC
+          ---
+          duration_ms: 0.0558
+          ...
+        # Subtest: step 13: BACC
+        ok 14 - step 13: BACC
+          ---
+          duration_ms: 0.0522
+          ...
+        # Subtest: step 14: BCCC
+        ok 15 - step 14: BCCC
+          ---
+          duration_ms: 0.051
+          ...
+        # Subtest: step 15: CCCC
+        ok 16 - step 15: CCCC
+          ---
+          duration_ms: 0.0536
+          ...
+        1..16
+    ok 4 - 4 discs (even)
+      ---
+      duration_ms: 3.6018
+      type: 'suite'
+      ...
+    1..4
+ok 2 - locationsAtStep
+  ---
+  duration_ms: 10.7081
+  type: 'suite'
+  ...
+1..2
+# tests 39
+# suites 6
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 215.9303

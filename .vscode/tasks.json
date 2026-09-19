@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Compile Hanoi tests for debugging",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/node_modules/typescript/bin/tsc",
+        "src/lib/tower-of-hanoi.test.ts",
+        "--rootDir",
+        "src/lib",
+        "--outDir",
+        ".cache/hanoi-debug",
+        "--module",
+        "commonjs",
+        "--target",
+        "es2019",
+        "--strict",
+        "--skipLibCheck",
+        "--sourceMap",
+        "--inlineSources"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": "$tsc"
+    }
+  ]
+}
