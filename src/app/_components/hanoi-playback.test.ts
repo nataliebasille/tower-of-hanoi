@@ -1,145 +1,179 @@
 import { deepStrictEqual } from "node:assert";
 import { describe, it } from "node:test";
-import { act } from "react";
-import { useHanoiPlayback } from "../../app/_components/hanoi.actions";
+import { act, createElement, type PropsWithChildren } from "react";
+import { HanoiPlayback } from "./hanoi-playback";
+import {
+  HanoiPlayerProvider,
+  useHanoiSelector,
+  useHanoiSetState,
+  type HanoiPlayerState,
+} from "./hanoi-player-context";
+import { renderHook } from "../../lib/hooks/test-helpers";
 import {
   initialState,
   firstStep,
   secondStep,
   finalStep,
   penultimateStep,
-  renderPlayer,
-} from "./hanoi-test-helpers";
+} from "../../lib/hooks/hanoi-test-helpers";
 
-describe("useHanoiPlayback", () => {
+const thirdStep: HanoiPlayerState["step"] = {
+  step: 3,
+  movedDisc: 0,
+  locations: [1, 1, 0],
+  complete: false,
+};
+
+describe("HanoiPlayback", () => {
   it("pauses without losing the final state when advancing at the upper bound", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const hook = renderPlayer(useHanoiPlayback, {
+    const player = renderPlayback({
       ...initialState,
       playing: true,
       step: finalStep,
     });
     act(() => context.mock.timers.tick(1000));
-    deepStrictEqual(hook.current.state, { ...initialState, step: finalStep });
+    deepStrictEqual(player.current.state, { ...initialState, step: finalStep });
     act(() => context.mock.timers.tick(5000));
-    deepStrictEqual(hook.current.state, { ...initialState, step: finalStep });
+    deepStrictEqual(player.current.state, { ...initialState, step: finalStep });
   });
 
   it("does not advance while paused", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const hook = renderPlayer(useHanoiPlayback);
+    const player = renderPlayback();
     act(() => context.mock.timers.tick(5000));
-    deepStrictEqual(hook.current.state, initialState);
+    deepStrictEqual(player.current.state, initialState);
   });
 
-  it("waits a full interval and advances once per interval", (context) => {
+  it("advances immediately on play, then once per interval", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const state = { ...initialState, playing: true };
-    const hook = renderPlayer(useHanoiPlayback, state);
+    const state = { ...initialState, playing: true, step: firstStep };
+    const player = renderPlayback({ ...initialState, playing: true });
+    deepStrictEqual(player.current.state, state);
     act(() => context.mock.timers.tick(999));
-    deepStrictEqual(hook.current.state, state);
+    deepStrictEqual(player.current.state, state);
     act(() => context.mock.timers.tick(1));
-    deepStrictEqual(hook.current.state, { ...state, step: firstStep });
+    deepStrictEqual(player.current.state, { ...state, step: secondStep });
     act(() => context.mock.timers.tick(1000));
-    deepStrictEqual(hook.current.state, { ...state, step: secondStep });
+    deepStrictEqual(player.current.state, { ...state, step: thirdStep });
   });
 
   it("cancels the pending tick on pause and resumes from the current step", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const hook = renderPlayer(useHanoiPlayback, {
+    const player = renderPlayback({
       ...initialState,
       playing: true,
     });
-    act(() => context.mock.timers.tick(1000));
-    act(() => hook.current.update({ playing: false }));
+    act(() => context.mock.timers.tick(600));
+    act(() => player.current.update({ playing: false }));
     act(() => context.mock.timers.tick(5000));
-    deepStrictEqual(hook.current.state, { ...initialState, step: firstStep });
-    act(() => hook.current.update({ playing: true }));
+    deepStrictEqual(player.current.state, { ...initialState, step: firstStep });
+    act(() => player.current.update({ playing: true }));
     act(() => context.mock.timers.tick(999));
-    deepStrictEqual(hook.current.state, {
-      ...initialState,
-      playing: true,
-      step: firstStep,
-    });
-    act(() => context.mock.timers.tick(1));
-    deepStrictEqual(hook.current.state, {
+    deepStrictEqual(player.current.state, {
       ...initialState,
       playing: true,
       step: secondStep,
+    });
+    act(() => context.mock.timers.tick(1));
+    deepStrictEqual(player.current.state, {
+      ...initialState,
+      playing: true,
+      step: thirdStep,
     });
   });
 
   it("replaces the old interval when speed changes", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const hook = renderPlayer(useHanoiPlayback, {
+    const player = renderPlayback({
       ...initialState,
       playing: true,
     });
     act(() => context.mock.timers.tick(600));
-    act(() => hook.current.update({ speed: 500 }));
+    act(() => player.current.update({ speed: 500 }));
     act(() => context.mock.timers.tick(400));
-    deepStrictEqual(hook.current.state, {
-      ...initialState,
-      playing: true,
-      speed: 500,
-    });
-    act(() => context.mock.timers.tick(100));
-    deepStrictEqual(hook.current.state, {
-      ...initialState,
-      playing: true,
-      speed: 500,
-      step: firstStep,
-    });
-    act(() => context.mock.timers.tick(500));
-    deepStrictEqual(hook.current.state, {
+    deepStrictEqual(player.current.state, {
       ...initialState,
       playing: true,
       speed: 500,
       step: secondStep,
+    });
+    act(() => context.mock.timers.tick(100));
+    deepStrictEqual(player.current.state, {
+      ...initialState,
+      playing: true,
+      speed: 500,
+      step: thirdStep,
     });
   });
 
   it("does not restart the interval on an unrelated rerender", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
     const state = { ...initialState, playing: true };
-    const hook = renderPlayer(useHanoiPlayback, state);
+    const player = renderPlayback({ ...initialState, playing: true });
     act(() => context.mock.timers.tick(600));
-    hook.rerender(undefined);
+    player.rerender(undefined);
     act(() => context.mock.timers.tick(400));
-    deepStrictEqual(hook.current.state, { ...state, step: firstStep });
+    deepStrictEqual(player.current.state, { ...state, step: secondStep });
   });
 
   it("clears the playback interval on unmount", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
     const clearIntervalMock = context.mock.method(globalThis, "clearInterval");
-    const hook = renderPlayer(useHanoiPlayback, {
+    const player = renderPlayback({
       ...initialState,
       playing: true,
     });
-    hook.unmount();
+    player.unmount();
     deepStrictEqual(clearIntervalMock.mock.callCount(), 1);
     act(() => context.mock.timers.tick(5000));
-    deepStrictEqual(hook.current.state, { ...initialState, playing: true });
+    deepStrictEqual(player.current.state, {
+      ...initialState,
+      playing: true,
+      step: firstStep,
+    });
   });
 
   it("pauses automatically when the final move completes", (context) => {
     context.mock.timers.enable({ apis: ["setInterval"] });
-    const hook = renderPlayer(useHanoiPlayback, {
+    const player = renderPlayback({
       ...initialState,
       playing: true,
       step: penultimateStep,
     });
     act(() => context.mock.timers.tick(1000));
-    deepStrictEqual(hook.current.state, {
+    deepStrictEqual(player.current.state, {
       ...initialState,
       playing: false,
       step: finalStep,
     });
     act(() => context.mock.timers.tick(5000));
-    deepStrictEqual(hook.current.state, {
+    deepStrictEqual(player.current.state, {
       ...initialState,
       playing: false,
       step: finalStep,
     });
   });
 });
+
+function renderPlayback(state = initialState) {
+  function Wrapper({ children }: PropsWithChildren) {
+    return createElement(
+      HanoiPlayerProvider,
+      { initialState: structuredClone(state) },
+      createElement(HanoiPlayback),
+      children,
+    );
+  }
+  return renderHook(
+    () => ({
+      state: useHanoiSelector((current) => current),
+      update: useHanoiSetState((patch: Partial<HanoiPlayerState>) => (get) => ({
+        ...get(),
+        ...patch,
+      })),
+    }),
+    undefined,
+    Wrapper,
+  );
+}

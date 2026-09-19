@@ -4,12 +4,12 @@ const fs = require("node:fs");
 
 const root = path.resolve(__dirname, "..");
 const testFiles = [
-  "tower-of-hanoi.test",
-  "bi-directional-generator.test",
-  "hooks/useGenerator.test",
-  "hooks/useBidirectional.test",
-  "hooks/useHanoiStepController.test",
-  "hooks/useHanoiPlayback.test",
+  "lib/tower-of-hanoi.test",
+  "lib/bi-directional-generator.test",
+  "lib/hooks/useGenerator.test",
+  "lib/hooks/useBidirectional.test",
+  "app/_components/hanoi.actions.test",
+  "app/_components/hanoi-playback.test",
 ];
 const requestedFiles = process.argv.slice(2);
 const selectedFiles =
@@ -23,14 +23,14 @@ const selectedFiles =
             .replace(/^\.\//, "");
           const matches = testFiles.filter(
             (file) =>
-              normalized === `src/lib/${file}.ts` ||
+              normalized === `src/${file}.ts` ||
               normalized === `${file}.ts` ||
               normalized === `${path.basename(file)}.ts`,
           );
           if (matches.length !== 1) {
             console.error(`Unknown or ambiguous test file: ${requested}`);
             console.error(
-              `Available files:\n${testFiles.map((file) => `  src/lib/${file}.ts`).join("\n")}`,
+              `Available files:\n${testFiles.map((file) => `  src/${file}.ts`).join("\n")}`,
             );
             process.exit(1);
           }
@@ -58,7 +58,7 @@ fs.writeFileSync(
         baseUrl: "..",
         paths: { "@/*": ["src/*"] },
       },
-      files: selectedFiles.map((file) => path.join(root, `src/lib/${file}.ts`)),
+      files: selectedFiles.map((file) => path.join(root, `src/${file}.ts`)),
     },
     null,
     2,
@@ -80,7 +80,7 @@ const tests = spawnSync(
     path.join(root, "scripts/test-aliases.cjs"),
     "--test",
 
-    ...selectedFiles.map((file) => `.cache/hanoi-tests/lib/${file}.js`),
+    ...selectedFiles.map((file) => `.cache/hanoi-tests/${file}.js`),
   ],
   { cwd: root, stdio: "inherit" },
 );
